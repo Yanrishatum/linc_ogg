@@ -17,6 +17,7 @@ namespace linc {
             extern Dynamic ov_comment(OggFile vf, int link);
             extern int ov_read(OggFile vf, OggBytesData buffer, int byteOffset, int length, int bigendianp, int word, int sgned);
 
+            extern Dynamic ov_info(OggFile vf, int link);
         //internal
 
             typedef ::cpp::Function < int(int,int,int,OggBytesData) > InternalReadFN;

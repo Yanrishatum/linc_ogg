@@ -1,6 +1,6 @@
+#include <hxcpp.h>
 #include "./linc_ogg.h"
 
-#include <hxcpp.h>
 
 namespace linc {
 
@@ -12,6 +12,24 @@ namespace linc {
 
         } //newOggVorbisFile
 
+        Dynamic ov_info(OggFile vf, int link)
+        {
+          vorbis_info* src_info = ov_info(vf.get_raw(), -1);
+          if (src_info)
+          {
+            hx::Anon result = hx::Anon_obj::Create();
+            result->Add(HX_CSTRING("version"), (int)(src_info->version));
+            result->Add(HX_CSTRING("channels"), (int)(src_info->channels));
+            result->Add(HX_CSTRING("rate"), (int)(src_info->rate));
+            result->Add(HX_CSTRING("bitrate_upper"), (int)(src_info->bitrate_upper));
+            result->Add(HX_CSTRING("bitrate_nominal"), (int)(src_info->bitrate_nominal));
+            result->Add(HX_CSTRING("bitrate_lower"), (int)(src_info->bitrate_lower));
+            result->Add(HX_CSTRING("bitrate_window"), (int)(src_info->bitrate_window));
+            return result;
+          }
+          return null();
+        }
+        
         Dynamic ov_comment(OggFile vf, int link) {
 
             vorbis_comment* src_comment = ov_comment(vf.get_raw(), -1);

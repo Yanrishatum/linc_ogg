@@ -32,7 +32,7 @@ extern class Ogg {
     @:native('ov_fopen')
     static function ov_fopen(path:String, vf : OggVorbisFile) : Int;
 
-    @:native('ov_info')
+    @:native('linc::ogg::ov_info')
     static function ov_info(vf:OggVorbisFile,link:Int) : VorbisInfo;
 
     @:native('linc::ogg::ov_comment')
@@ -238,9 +238,9 @@ typedef OggCallbacks = {
 private extern class EOggVorbisFile {}
 typedef OggVorbisFile = cpp.Pointer<EOggVorbisFile>;
 
-@:include('linc_ogg.h')
-@:native('vorbis_info*')
-extern class VorbisInfo {
+//@:include('linc_ogg.h')
+//@:native('vorbis_info*')
+typedef VorbisInfo = {
     var version:Int;
     var channels:Int;
     var rate:Int;
